@@ -12,45 +12,14 @@
     <input id="taskDueDate" type="date" />
     <button onclick="addUserInputedTask()">Add Task</button>
     <div id="taskListDisplay"></div>
+    
     <script>
-        // List of all tasks
-        let tasksList = [{
-                            id:'1',
-                            name:'Meditate',
-                            dueDate:'2021-11-26'
-                         },
-                         {
-                            id:'2',
-                            name:'Trade Stocks',
-                            dueDate:'2021-11-26'
-                         },
-                         {
-                            id:'3',
-                            name:'Attend Classes at school',
-                            dueDate:'2021-11-26'
-                         }];
-        let tasksListDates = [];
-        
+        // Model
+        let tasksList = [];
 
         // Attributes(Todo variables)
         let divElement;
         let buttonElement;
-        let inputElement;
-
-        // Space to add new tasks
-        //createInputBox('text');
-        //createButton('Add Task');
-
-        // Display all the tasks
-        
-        
-
-        // Methods
-        function createInputBox(inputType){
-            inputElement = document.createElement('input');
-            inputElement.type = inputType;
-            document.body.appendChild(inputElement);
-        }
 
         // Create divDisplay section in the html body
         function createTaskDiv(task){
@@ -68,14 +37,12 @@
             divElement.appendChild(buttonElement);
             document.getElementById('taskListDisplay').appendChild(divElement);
         }
-
+        
         function addUserInputedTask(){
             let userTaskId = new Date().getTime().toString();
             let userTask = document.getElementById('userInputTask').value;
             let userTaskDate = document.getElementById('taskDueDate').value;
-           
-
-            
+             
             let taskObject={id:userTaskId,
                             name:userTask,
                             dueDate:userTaskDate};
@@ -83,7 +50,7 @@
             tasksList.push(taskObject);
             
             render();
-        }
+        }       
         
         function render(){
             document.getElementById('taskListDisplay').innerHTML = '';
@@ -91,7 +58,7 @@
                 createTaskDiv(task);    
                         });
         }
-
+        
         function deleteTask(event){
             let taskToDelete = event.target.id;
             tasksList = tasksList.filter(function(task){
